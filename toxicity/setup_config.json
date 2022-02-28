@@ -1,0 +1,10 @@
+{
+    "model_name":"bert-base-cased",
+    "do_lower_case":true,
+    "num_labels":"6",
+    "save_mode":"pretrained",
+    "max_length":"150",
+    "captum_explanation":true,
+    "embedding_name": "bert",
+    "FasterTransformer":false
+}
