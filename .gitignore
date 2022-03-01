@@ -1,3 +1,5 @@
 *.mar
 *.pt
 .vscode
+sentiment/Transformer_model/*
+toxicity/dataset/*.csv

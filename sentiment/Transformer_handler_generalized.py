@@ -16,6 +16,14 @@ from captum.attr import LayerIntegratedGradients
 
 logger = logging.getLogger(__name__)
 logger.info("Transformers version %s",transformers.__version__)
+
+# command to create sentiment model:-----
+# torch-model-archiver --model-name BERTSeqClassification --version 1.0 --serialized-file Transformer_model/pytorch_model.bin 
+# --handler ./Transformer_handler_generalized.py --extra-files "Transformer_model/config.json,./setup_config.json,./index_to_name.json"
+
+# serve only sentiment model:----
+# torchserve --start --model-store model_store --models sentiment=BERTSeqClassification.mar --ncs --ts-config ./config.properties
+
 class TransformersSeqClassifierHandler(BaseHandler, ABC):
     """
     Transformers handler class for sequence, token classification and question answering.
@@ -33,6 +41,7 @@ class TransformersSeqClassifierHandler(BaseHandler, ABC):
             ctx (context): It is a JSON Object containing information
             pertaining to the model artefacts parameters.
         """
+        print(ctx)
         self.manifest = ctx.manifest
         properties = ctx.system_properties
         model_dir = properties.get("model_dir")
